@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: verdana;
+  font-family: Arial;
   font-size: 10pt;
 }
 
@@ -9,13 +9,89 @@ body {
   padding: 20px 0px 0px 5px;
 }
 
+.loginLinkContainer {
+  float: right;
+  margin: 30px 10px 0px 0px;
+}
+
+.cartMainContainer {
+  width: 600px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+.cartIconContainer {
+  float: right;
+  textAlign: left;
+  width: 240px
+}
+
+.cartIcon {
+  height: 50px;
+  padding: 20px 0px 0px 5px;
+}
+
+.cartPrice {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cartUpdateBtn {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(#fff,#F9F9F9);
+  display: inline-block;
+  border: 1px solid #C2C2C2;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  padding-top: 1px;
+  line-height: 1;
+}
+
+.cartSummaryContainer {
+  float: left;
+  padding: 10px;
+  border: 1px dotted #000;
+  margin: 10px 0px 0px 10px;
+  width: 500px;
+  height: 500px;
+  background-color: #f4f4f4;
+}
+
+.qtyInput {
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    margin: 0px 5px 0px 5px;
+}
+
+
 .App-header {
   height: 80px;
   background-color: #2E86C1;
 }
 
+.footer{
+  float: left;
+  width: 100%;
+  height: 80px;
+  background-color: #ccc;
+  text-align: center;
+  margin: 20px 0px 0px 0px;
+  padding: 30px 0px 0px 0px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .productsList {
-  width: 300px;
+  width: 327px;
   float: left;
   border: 1px solid #ccc;
   text-align: center;
@@ -31,13 +107,19 @@ body {
   font-size: 11pt;
   height: 45px;
   margin-top: 10px;
+  border-radius: 50px;
+}
+
+.btn:hover {
+  background-color: #2E86C1;
+  color: #fff;
 }
 
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 18px;
   text-align: center;
   background: #000;
   padding: 3px 0px 0px 0px;
@@ -51,8 +133,8 @@ body {
   text-align: center;
   border: 1px solid #ccc;
   background-color: #f4f4f4;
-  margin: 10px 0px 10px 6px;
-  width: 82%;
+  margin: 100px 0px 10px 6px;
+  width: 99%;
   height: 80px;
 }
 
@@ -79,6 +161,51 @@ body {
   width: 200px;
   clear: both;
   margin: 20px 0px 0px 0px;
+  font-size: 14px;
+}
+.formGroup {
+  margin: 5px 0px 15px 0px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 25px;
+}
+
+.formControl {
+  display: block;
+  width: 100%;
+  height: 20px;
+  padding: 6px;
+  font-size: 14px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.required{
+  color: #FF0000;
+}
+
+input.error {
+  border: 1px solid #FF5733;
+}
+
+.error {
+  color:#db2269;
+  font-size: 0.805em;
+  display: relative;
 }
 
 .paddingLeft10 {
