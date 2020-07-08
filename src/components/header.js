@@ -2,6 +2,9 @@ import React from 'react';
 
 class Header extends React.Component {
   render() {
+
+    const validateForm = localStorage.getItem("registration");
+
       return (
          <div className="sticky">
              <header className="App-header">

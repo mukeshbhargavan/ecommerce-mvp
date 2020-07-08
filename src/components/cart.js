@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./header";
-import Footer from "./footer";
 
 function Cart() {
     const cartList = JSON.parse(localStorage.getItem("myCart"));
     const [cart, setCart] = React.useState(cartList ? cartList : []);
     let totalAmount = 0;
 
+    //Add/Remove quantity of the items in the cart
      const updateQty = (id, action) => {
         const objIndex = cart.findIndex((item => item.id === id));
         cart[objIndex].quantity =  (action === "add") ? cart[objIndex].quantity + 1 : cart[objIndex].quantity - 1;
@@ -14,6 +14,7 @@ function Cart() {
         localStorage.setItem("myCart", JSON.stringify(cart));
      }
 
+     //Remove item from the cart
      const removeItem = (id) => {
         const afterRemovedArray = cart.filter(item => {
             return item.id !== id;
@@ -54,7 +55,9 @@ function Cart() {
               </div>
 
             {(cart.length === 0) ?
-               <div>No item in cart!!!!! - <a href="/">HAI</a></div> :
+               <div style={{'padding': '20px', 'textAlign': 'center', 'fontSize': '25px'}}>
+                  YOUR SHOPPING CART IS EMPTY! <br/> <a href="/" style={{'color': 'blue'}}>CLICK HERE TO PURCHASE</a>
+               </div> :
                <div className="cartSummaryContainer">
                   <div className="priceDetailsTitle">PRICE DETAILS</div>
                   <div style={{"fontSize": "20px", "marginBottom": "80px"}}>
