@@ -21,7 +21,7 @@ function Product() {
         if (!searchTxt) window.location.href = '/'; //To clear search
 
         //Search product from the product list by product title
-        const searchResult = productsList.filter(function(item) {
+        const searchResult = products.filter(function(item) {
             return item.title.toLowerCase().indexOf(searchTxt.toLowerCase()) > -1;
         });
         setProductsList([...searchResult]);
