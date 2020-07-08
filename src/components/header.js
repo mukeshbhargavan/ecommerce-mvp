@@ -6,10 +6,12 @@ class Header extends React.Component {
          <div>
            <header className="App-header">
              <div style={{'float': 'left', 'width': '300px'}}>
-               <img src="/images/logo.png" className="logo"/>
+               <a href="/"><img src="/images/logo.png" className="logo" alt="Logo goes here"/></a>
              </div>
-             <div style={{'float': 'right', 'text-align': 'left', 'width': '80px'}}>
-               <a href='cart'><img src="/images/cartIcon.png" className="logo"/></a>
+             <div style={{'float': 'right', 'textAlign': 'left', 'width': '80px'}}>
+               <a href="cart">
+                <img src="/images/cartIcon.png" className="logo" alt="Cart Icon"/>
+               </a>
                <span className="circle">{this.props.cart.length}</span>
              </div>
            </header>

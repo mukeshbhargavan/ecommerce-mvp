@@ -65,13 +65,20 @@ body {
   font-size: 20px;
 }
 
-.searchBtn{
+.searchBtn {
   background-color: #000A87;
   width: 150px;
   color: #fff;
   font-size: 11pt;
   height: 34px;
   margin-top: 2px;
+}
+
+.filterBox {
+  height: 40px;
+  width: 200px;
+  clear: both;
+  margin: 20px 0px 0px 0px;
 }
 
 .paddingLeft10 {
