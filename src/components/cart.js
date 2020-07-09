@@ -4,6 +4,7 @@ import Header from "./header";
 function Cart() {
     const cartList = JSON.parse(localStorage.getItem("myCart"));
     const [cart, setCart] = React.useState(cartList ? cartList : []);
+    const isLoggedin = localStorage.getItem("isLoggedin");
     let totalAmount = 0;
 
     //Add/Remove quantity of the items in the cart
@@ -12,6 +13,10 @@ function Cart() {
         cart[objIndex].quantity =  (action === "add") ? cart[objIndex].quantity + 1 : cart[objIndex].quantity - 1;
         setCart([...cart]);
         localStorage.setItem("myCart", JSON.stringify(cart));
+     }
+
+     const redictPage = (pageName) => {
+       window.location.href = "/" + pageName;
      }
 
      //Remove item from the cart
@@ -56,7 +61,7 @@ function Cart() {
 
             {(cart.length === 0) ?
                <div style={{'padding': '20px', 'textAlign': 'center', 'fontSize': '25px'}}>
-                  YOUR SHOPPING CART IS EMPTY! <br/> <a href="/" style={{'color': 'blue'}}>CLICK HERE TO PURCHASE</a>
+                  YOUR SHOPPING CART IS EMPTY! <br/> <a href="/" style={{'color': 'blue'}}>CLICK HERE TO SHOP</a>
                </div> :
                <div className="cartSummaryContainer">
                   <div className="priceDetailsTitle">PRICE DETAILS</div>
@@ -73,7 +78,9 @@ function Cart() {
                       <div className="floatLeft"><br/>${localStorage.getItem("cartCount")}.00</div>
                   </div>
                   <div style={{"textAlign": "center"}}>
-                    <input type="submit" value="PLACE ORDER" className="PlaceOrderBtn"/>
+                    {isLoggedin ?
+                        <input type="submit" value="PLACE ORDER" className="PlaceOrderBtn" onClick={() => redictPage('order')}/> :
+                    <input type="submit" value="PLACE ORDER" className="PlaceOrderBtn" onClick={() => redictPage('login')}/>}
                   </div>
             </div>}
        </div>

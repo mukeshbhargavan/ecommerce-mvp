@@ -93,7 +93,6 @@ function Registration() {
           }
       }
 
-
       if (!errorFlag) {
         setValidateMessage('Please enter the required fields before submitting the form data!');
       } else {

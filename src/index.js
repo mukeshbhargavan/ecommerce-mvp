@@ -5,6 +5,7 @@ import Product from './components/productsList';
 import Cart from './components/cart';
 import Registration from './components/registration'
 import Login from './components/login';
+import Logout from './components/logout' 
 import './main.css';
 
 ReactDOM.render((
@@ -15,6 +16,7 @@ ReactDOM.render((
         <Route path = "/cart" component = {Cart} />
         <Route path = "/registration" component = {Registration} />
         <Route path = "/login" component = {Login} />
+        <Route path = "/logout" component = {Logout} />
     </Switch>
    </Router>
 ), document.getElementById('root'));

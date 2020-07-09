@@ -32,7 +32,7 @@ body {
 .cartIconContainer {
   float: right;
   textAlign: left;
-  width: 240px
+  width: 350px
 }
 
 .cartIcon {
@@ -184,12 +184,16 @@ body {
 
 .PlaceOrderBtn {
   background-color: #D35400;
-  width: 150px;
+  width: 300px;
   color: #fff;
   font-size: 11pt;
   height: 45px;
   margin-top: 30px;
   border-radius: 5px;
+}
+
+.PlaceOrderBtn:hover {
+  background-color: #2E86C1;
 }
 
 .filterBox {

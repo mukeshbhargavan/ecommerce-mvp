@@ -47,7 +47,6 @@ function Product() {
             }
           ]);
         }
-        localStorage.setItem("myCart", JSON.stringify(cart)); //Storing the cart details in localStorage
     };
 
     return (

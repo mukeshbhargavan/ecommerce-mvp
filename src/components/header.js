@@ -1,9 +1,11 @@
 import React from 'react';
 
 class Header extends React.Component {
-  render() {
 
-    const validateForm = localStorage.getItem("registration");
+  render() {
+      const isLoggedin = localStorage.getItem("isLoggedin");
+      const userName = JSON.parse(localStorage.getItem("registration"));
+      localStorage.setItem("myCart", JSON.stringify(this.props.cart));
 
       return (
          <div className="sticky">
@@ -17,7 +19,10 @@ class Header extends React.Component {
                      </a>
                      <span className="circle">{this.props.cart.length}</span>
                      <div  className="loginLinkContainer">
-                        <a href="/registration">Registration</a> | <a href="/login">Login</a>
+                        {isLoggedin ?
+                            <span> <b>Welcome {userName && userName.name}</b>, <a href="/logout">Logout</a></span> :
+                        <span><a href="/registration">Registration</a> | <a href="/login">Login</a></span>
+                        }
                      </div>
                  </div>
              </header>
