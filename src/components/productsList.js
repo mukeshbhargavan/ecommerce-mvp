@@ -4,12 +4,12 @@ import Header from './header';
 import Footer from './footer';
 
 function Product() {
-    const [cart, setCart] = useState( localStorage.getItem("myCart") ? JSON.parse(localStorage.getItem("myCart")) : [] );
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("myCart")) || []);
     const [productsList, setProductsList] = useState(products);
 
     //Sort products by price (Low to High and High to Low)
     const filterProduct = e => {
-        productsList.sort(function(a, b) {
+        productsList.sort((a, b) => {
             return (e.target.value === 'lowtohigh') ?  (a.price - b.price) : (b.price - a.price);
         });
         setProductsList([...productsList]); //Storing the sorted products list in state
@@ -21,7 +21,7 @@ function Product() {
         if (!searchTxt) window.location.href = '/'; //To clear search
 
         //Search product from the product list by product title
-        const searchResult = products.filter(function(item) {
+        const searchResult = products.filter(item => {
             return item.title.toLowerCase().indexOf(searchTxt.toLowerCase()) > -1;
         });
         setProductsList([...searchResult]);

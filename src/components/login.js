@@ -3,8 +3,7 @@ import Header from "./header";
 import Footer from "./footer";
 
 function Login() {
-    let cart = JSON.parse(localStorage.getItem("myCart"));
-    cart = cart ? cart : [];
+    let cart = JSON.parse(localStorage.getItem("myCart")) || [];
     const [validateMessage, setValidateMessage] = React.useState("");
     const [requiredMessage, setrequiredMessage] = React.useState("");
 
@@ -25,14 +24,16 @@ function Login() {
             setValidateMessage("Invalid Credentials! Please use the valid Credentials to login.");
         }
     }
-
     return (
        <div style={{"marginTop": "100px"}}>
           <Header cart={cart}/>
           <div style={{"width": "400px", "marginLeft": "50px", "height": "500px"}}>
           <h1>User Login</h1>
               {cart.length > 0 ?
-                  <div style={{"fontSize": "17px", "margin": "10px 0px 20px 0px"}}>Please login to complete your order</div> :
+                  <div style={{"fontSize": "16px", "margin": "10px 0px 20px 0px"}}>
+                    Please login to complete your order. In case if you are not registered early,
+                    please <a href="/registration" style={{'color': 'blue'}}>click here</a> to register!
+                  </div> :
               ""}
               <form method="post">
                   <div className="required">{validateMessage}</div>

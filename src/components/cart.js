@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./header";
 
 function Cart() {
-    const cartList = JSON.parse(localStorage.getItem("myCart"));
-    const [cart, setCart] = React.useState(cartList ? cartList : []);
+    const cartList = JSON.parse(localStorage.getItem("myCart")) || [];
+    const [cart, setCart] = React.useState(cartList);
     const isLoggedin = localStorage.getItem("isLoggedin");
     let totalAmount = 0;
 

@@ -26,8 +26,7 @@ function Registration() {
     const [registration, setRegistration] = React.useState(userForm);
     const [validateMessage, setValidateMessage] = React.useState('');
 
-    let cart = JSON.parse(localStorage.getItem("myCart"));
-    cart = cart ? cart : [];
+    let cart = JSON.parse(localStorage.getItem("myCart")) || [];
 
     const handleChange = (event) => {
       event.preventDefault();
