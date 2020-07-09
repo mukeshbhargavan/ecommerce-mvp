@@ -6,26 +6,26 @@ const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 );
 
-const validateForm = errors => {
-  let valid = true;
-  Object.values(errors).forEach(val => val.length > 0 && (valid = false));
-  return valid;
-};
-
 function Registration() {
     const userForm = {
         name: null,
         email: null,
         password: null,
-        age: null,
+        age: 'Male',
+        billingAddress: '',
+        shippingAddress: '',
         errors: {
           name: '',
           email: '',
           password: '',
-          age: ''
+          age: '',
+          billingAddress: '',
+          shippingAddress: ''
         }
     };
     const [registration, setRegistration] = React.useState(userForm);
+    const [validateMessage, setValidateMessage] = React.useState('');
+
     let cart = JSON.parse(localStorage.getItem("myCart"));
     cart = cart ? cart : [];
 
@@ -33,26 +33,25 @@ function Registration() {
       event.preventDefault();
       const { name, value } = event.target;
       let errors = registration.errors;
-      let values = registration;
-      let registrationSucess = false;
+      setValidateMessage('');
 
       switch (name) {
          case 'name':
               errors.name =
                 value.length === 0
-                  ? 'Name is a required field and it should not be null'
+                  ? 'Please enter Name!'
                   : '';
               break;
           case 'email':
               errors.email =
                 validEmailRegex.test(value)
                   ? ''
-                  : 'Email is not valid!';
+                  : 'Please enter valid Email Address!';
               break;
           case 'password':
                    errors.password =
-                     value.length === 0
-                       ? 'Please enter Password!'
+                     value.length <= 4
+                       ? 'Please enter Password, it should be minimum 5 characters!'
                        : '';
                    break;
            case 'age':
@@ -61,6 +60,18 @@ function Registration() {
                       ? ''
                       : 'Enter a valid age. Age should be more than 20';
                   break;
+           case 'billingAddress':
+                  errors.billingAddress =
+                    value.length <= 20
+                      ? 'Please enter Billing Address, it should be minimum 20 characters!'
+                      : '';
+                  break;
+          case 'shippingAddress':
+                   errors.shippingAddress =
+                     value.length <= 20
+                       ? 'Please enter Shipping Address, it should be minimum 20 characters!'
+                       : '';
+                   break;
           default:
             break;
       }
@@ -73,11 +84,21 @@ function Registration() {
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      if(validateForm(registration.errors)) {
-          localStorage.setItem("registration", JSON.stringify(registration));
-          window.location.href = "/registration";
+      let errorFlag = true;
+
+      for (var i = 0; i <= 6; i++) {
+          if (event.target[i].value === "") {
+            errorFlag = false;
+            break;
+          }
+      }
+
+
+      if (!errorFlag) {
+        setValidateMessage('Please enter the required fields before submitting the form data!');
       } else {
-        alert("Please validate form input before submitting the data");
+        localStorage.setItem("registration", JSON.stringify(registration));
+        window.location.href = "/registration";
       }
     }
 
@@ -85,9 +106,14 @@ function Registration() {
        <div style={{'marginTop': '100px'}}>
           <Header cart={cart}/>
           <h1 style={{'marginLeft': '50px'}}>User Registration</h1>
-          {localStorage.getItem("registration") && localStorage.getItem("registration").name !== "" ?
-            <div style={{'height': '500px'}}>
-              YYYY
+          {localStorage.getItem("registration") && JSON.parse(localStorage.getItem("registration")).name !== "" ?
+            <div className="registrationSuccessContainer">
+              Hello <b>{JSON.parse(localStorage.getItem("registration")).name}</b>! You have been successfully registered! <br/>
+              <ul>
+                <li> <a href="/login" style={{'color': 'blue'}}>Click here</a> to Login</li>
+                <li> <a href="/" style={{'color': 'blue'}}>Click here</a> to Purchase</li>
+                <li> <a href="/cart" style={{'color': 'blue'}}>Click here</a> to View Cart</li>
+              </ul>
             </div>
             :
             (<div style={{'width': '400px', 'marginLeft': '50px'}}>
@@ -98,7 +124,7 @@ function Registration() {
                       <span className='error'>{registration.errors.name}</span>
                   </div>
                   <div className="formGroup">
-                      <label for="email">Email <span className="required">*</span></label>
+                      <label for="email">Email Address<span className="required">*</span></label>
                       <input type="text" name="email" className="formControl" onChange={handleChange} onBlur={handleChange} noValidate/>
                       <span className='error'>{registration.errors.email}</span>
                   </div>
@@ -113,22 +139,25 @@ function Registration() {
                       <span className='error'>{registration.errors.age}</span>
                   </div>
                   <div className="formGroup">
-                      <label for="gender">Gender</label>
-                      <select name="gender" className="formControl">
+                      <label for="gender">Gender <span className="required">*</span></label>
+                      <select name="gender" className="formControl" style={{'height': '35px', 'width': '410px'}}>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                       </select>
                   </div>
-                  <h3 style={{'color': '#999', 'marginTop': '10px'}}>Billing Address</h3>
+                  <h3 style={{'color': '#999', 'marginTop': '10px'}}>Billing Address <span className="required">*</span></h3>
                   <div className="formGroup">
-                      <textarea name="billingAddress" style={{'width': '400px', 'height': '70px'}}/>
+                      <textarea name="billingAddress" style={{'width': '410px', 'height': '70px'}} onChange={handleChange} onBlur={handleChange} noValidate/>
+                      <span className='error'>{registration.errors.billingAddress}</span>
                   </div>
 
-                  <h3 style={{'color': '#999', 'marginTop': '10px'}}>Shipping Address</h3>
-                  <input type="checkbox"/> Shipping information same as Billing Address?
+                  <h3 style={{'color': '#999', 'marginTop': '10px'}}>Shipping Address <span className="required">*</span></h3>
+                  <input type="checkbox" disabled/> Shipping information same as Billing Address?
                   <div className="formGroup">
-                      <textarea name="billingAddress" style={{'width': '400px', 'height': '70px'}}/>
+                      <textarea name="shippingAddress" style={{'width': '410px', 'height': '70px'}} onChange={handleChange} onBlur={handleChange} noValidate/>
+                      <span className='error'>{registration.errors.shippingAddress}</span>
                   </div>
+                  <span className="required" style={{'margin': '10px 0px 10px 0px'}}>{validateMessage}</span>
                   <input type="submit" value="Registration" className="btn" />
               </form>
             </div>)}

@@ -14,6 +14,13 @@ body {
   margin: 30px 10px 0px 0px;
 }
 
+.registrationSuccessContainer {
+  height: 500px;
+  font-size: 17px;
+  padding-left: 50px;
+  line-height: 1.6;
+}
+
 .cartMainContainer {
   width: 600px;
   height: 200px;
