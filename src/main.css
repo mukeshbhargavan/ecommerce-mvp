@@ -153,24 +153,12 @@ body {
 }
 
 .searchInput {
-  width: 320px;
+  width: 520px;
   height: 30px;
   margin: 20px 10px 20px 0px;
   clear: both;
   border: 1px solid #000;
   font-size: 20px;
-}
-
-.searchBtn {
-  background-color: #2E86C1;
-  width: 150px;
-  color: #fff;
-  font-size: 11pt;
-  height: 34px;
-}
-
-.searchBtn:hover{
-  background-color: #D35400;
 }
 
 .priceDetailsTitle {

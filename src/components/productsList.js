@@ -53,9 +53,8 @@ function Product() {
         <div className="App">
             <Header cart={cart}/>
             <div className="searchContainer">
-                <div style={{ 'width': '50%'}} className="floatLeft">
-                    <input type="text" className="searchInput" id="searchTxt"/>
-                    <input type="button" value="Search" className="searchBtn" onClick={searchProduct}/>
+                <div className="floatLeft" style={{"marginLeft":"30px"}}>
+                    <input type="text" className="searchInput" id="searchTxt" placeholder="Search Product by Title" onChange={searchProduct}/>
                 </div>
                 <div style={{'width': '200px'}} className="floatLeft">
                     <select name="filter" className="filterBox" onChange={filterProduct}>
