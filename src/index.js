@@ -13,12 +13,18 @@ ReactDOM.render((
   <Router>
   <Switch>
       <Route exact path='/' component={Product} />
-        <Route path = "/products" component = {Product} />
-        <Route path = "/cart" component = {Cart} />
-        <Route path = "/registration" component = {Registration} />
-        <Route path = "/order" component = {Order} />
-        <Route path = "/login" component = {Login} />
-        <Route path = "/logout" component = {Logout} />
+       <Route path = "/products/">
+          <Product/>
+       </Route>
+       <Route path = "/cart">
+          <Cart/>
+        </Route>
+       <Route path = "/registration" component = {Registration} />
+       <Route path = "/order" component = {Order} />
+       <Route path = "/login" component = {Login} />
+       <Route path = "/logout" component = {Logout} />
     </Switch>
    </Router>
 ), document.getElementById('root'));
+
+//with routers (HOC)

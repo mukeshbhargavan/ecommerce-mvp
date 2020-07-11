@@ -18,7 +18,6 @@ function Product() {
     //Search products - It will search by product title
     const searchProduct = () => {
         const searchTxt = document.getElementById('searchTxt').value;
-        if (!searchTxt) window.location.href = '/'; //To clear search
 
         //Search product from the product list by product title
         const searchResult = products.filter(item => {
